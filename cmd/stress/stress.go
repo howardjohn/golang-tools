@@ -34,6 +34,7 @@ var (
 	flagFailure = flag.String("failure", "", "fail only if output matches `regexp`")
 	flagIgnore  = flag.String("ignore", "", "ignore failure if output matches `regexp`")
 	flagOutput  = flag.String("o", defaultPrefix(), "output failure logs to `path` plus a unique suffix")
+	flagFailFast  = flag.Bool("f", false, "exit on first failure")
 )
 
 func init() {
@@ -52,6 +53,11 @@ Usage:
 func defaultPrefix() string {
 	date := time.Now().Format("go-stress-20060102T150405-")
 	return filepath.Join(os.TempDir(), date)
+}
+
+type result struct {
+	out []byte
+	duration time.Duration
 }
 
 func main() {
@@ -75,10 +81,11 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	res := make(chan []byte)
+	results := make(chan result)
 	for i := 0; i < *flagP; i++ {
 		go func() {
 			for {
+				t0 := time.Now()
 				cmd := exec.Command(flag.Args()[0], flag.Args()[1:]...)
 				done := make(chan bool)
 				if *flagTimeout > 0 {
@@ -108,17 +115,33 @@ func main() {
 				} else {
 					out = []byte{}
 				}
-				res <- out
+				results <- result{out, time.Since(t0)}
 			}
 		}()
 	}
 	runs, fails := 0, 0
-	ticker := time.NewTicker(5 * time.Second).C
+	totalDuration := time.Duration(0)
+	max, min := time.Duration(0), time.Duration(1<<31 - 1)
+	ticker := time.NewTicker(2 * time.Second).C
+	displayProgress := func() {
+		fmt.Printf("%v runs so far, %v failures (%.00f%% pass rate). %v avg, %v max, %v min\n",
+			runs, fails, 100*float64(runs)/float64(runs+fails), totalDuration/time.Duration(runs+fails), max, min)
+	}
 	for {
 		select {
-		case out := <-res:
+		case res := <-results:
 			runs++
-			if len(out) == 0 {
+			totalDuration += res.duration
+			if res.duration > max {
+				max = res.duration
+			}
+			if res.duration < min {
+				min = res.duration
+			}
+			if runs == 1 {
+				displayProgress()
+			}
+			if len(res.out) == 0 {
 				continue
 			}
 			fails++
@@ -128,16 +151,18 @@ func main() {
 				fmt.Printf("failed to create temp file: %v\n", err)
 				os.Exit(1)
 			}
-			f.Write(out)
+			f.Write(res.out)
 			f.Close()
-			if len(out) > 2<<10 {
-				out := out[:2<<10]
-				fmt.Printf("\n%s\n%s\n…\n", f.Name(), out)
+			if len(res.out) > 2<<10 {
+				fmt.Printf("\n%s\n%s\n…\n", f.Name(), res.out[:2<<10])
 			} else {
-				fmt.Printf("\n%s\n%s\n", f.Name(), out)
+				fmt.Printf("\n%s\n%s\n", f.Name(), res.out)
+			}
+			if *flagFailFast {
+				os.Exit(1)
 			}
 		case <-ticker:
-			fmt.Printf("%v runs so far, %v failures\n", runs, fails)
+			displayProgress()
 		}
 	}
 }
