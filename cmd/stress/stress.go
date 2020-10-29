@@ -124,8 +124,12 @@ func main() {
 	max, min := time.Duration(0), time.Duration(1<<31 - 1)
 	ticker := time.NewTicker(2 * time.Second).C
 	displayProgress := func() {
+        total := runs + fails
+        if total == 0 {
+            total = -1
+        }
 		fmt.Printf("%v runs so far, %v failures (%.00f%% pass rate). %v avg, %v max, %v min\n",
-			runs, fails, 100*float64(runs)/float64(runs+fails), totalDuration/time.Duration(runs+fails), max, min)
+			runs, fails, 100*float64(runs)/float64(total), totalDuration/time.Duration(total), max, min)
 	}
 	for {
 		select {
