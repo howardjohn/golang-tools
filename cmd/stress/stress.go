@@ -28,13 +28,14 @@ import (
 )
 
 var (
-	flagP       = flag.Int("p", runtime.NumCPU(), "run `N` processes in parallel")
-	flagTimeout = flag.Duration("timeout", 10*time.Minute, "timeout each process after `duration`")
-	flagKill    = flag.Bool("kill", true, "kill timed out processes if true, otherwise just print pid (to attach with gdb)")
-	flagFailure = flag.String("failure", "", "fail only if output matches `regexp`")
-	flagIgnore  = flag.String("ignore", "", "ignore failure if output matches `regexp`")
-	flagOutput  = flag.String("o", defaultPrefix(), "output failure logs to `path` plus a unique suffix")
-	flagFailFast  = flag.Bool("f", false, "exit on first failure")
+	flagP        = flag.Int("p", runtime.NumCPU(), "run `N` processes in parallel")
+	flagLimit    = flag.Int("limit", 100, "maximum number of failures until exiting")
+	flagTimeout  = flag.Duration("timeout", 10*time.Minute, "timeout each process after `duration`")
+	flagKill     = flag.Bool("kill", true, "kill timed out processes if true, otherwise just print pid (to attach with gdb)")
+	flagFailure  = flag.String("failure", "", "fail only if output matches `regexp`")
+	flagIgnore   = flag.String("ignore", "", "ignore failure if output matches `regexp`")
+	flagOutput   = flag.String("o", defaultPrefix(), "output failure logs to `path` plus a unique suffix")
+	flagFailFast = flag.Bool("f", false, "exit on first failure")
 )
 
 func init() {
@@ -56,7 +57,7 @@ func defaultPrefix() string {
 }
 
 type result struct {
-	out []byte
+	out      []byte
 	duration time.Duration
 }
 
@@ -111,7 +112,7 @@ func main() {
 				out, err := cmd.CombinedOutput()
 				close(done)
 				if err != nil && (failureRe == nil || failureRe.Match(out)) && (ignoreRe == nil || !ignoreRe.Match(out)) {
-					out = append(out, fmt.Sprintf("\n\nERROR: %v\n", err)...)
+					out = append(out, fmt.Sprintf("\nERROR: %v", err)...)
 				} else {
 					out = []byte{}
 				}
@@ -121,15 +122,16 @@ func main() {
 	}
 	runs, fails := 0, 0
 	totalDuration := time.Duration(0)
-	max, min := time.Duration(0), time.Duration(1<<31 - 1)
+	max, min := time.Duration(0), time.Duration(1<<63-1)
 	ticker := time.NewTicker(2 * time.Second).C
 	displayProgress := func() {
-        total := runs + fails
-        if total == 0 {
-            total = -1
-        }
-		fmt.Printf("%v runs so far, %v failures (%.00f%% pass rate). %v avg, %v max, %v min\n",
-			runs, fails, 100*float64(runs)/float64(total), totalDuration/time.Duration(total), max, min)
+		total := runs + fails
+		if total == 0 {
+			fmt.Printf("no runs so far\n")
+		} else {
+			fmt.Printf("%v runs so far, %v failures (%.2f%% pass rate). %v avg, %v max, %v min\n",
+				runs, fails, 100.0*(float64(runs)/float64(total)), totalDuration/time.Duration(total), max, min)
+		}
 	}
 	for {
 		select {
@@ -149,6 +151,7 @@ func main() {
 				continue
 			}
 			fails++
+			displayProgress()
 			dir, path := filepath.Split(*flagOutput)
 			f, err := ioutil.TempFile(dir, path)
 			if err != nil {
@@ -158,11 +161,16 @@ func main() {
 			f.Write(res.out)
 			f.Close()
 			if len(res.out) > 2<<10 {
-				fmt.Printf("\n%s\n%s\n…\n", f.Name(), res.out[:2<<10])
+				fmt.Printf("%s\n%s\n…\n", f.Name(), res.out[:2<<10])
 			} else {
-				fmt.Printf("\n%s\n%s\n", f.Name(), res.out)
+				fmt.Printf("%s\n%s\n", f.Name(), res.out)
 			}
 			if *flagFailFast {
+				fmt.Printf("fail fast enabled, exiting\n")
+				os.Exit(1)
+			}
+			if fails >= *flagLimit {
+				fmt.Printf("failure limit hit, exiting\n")
 				os.Exit(1)
 			}
 		case <-ticker:
