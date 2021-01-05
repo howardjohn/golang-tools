@@ -28,6 +28,8 @@ import (
 )
 
 var (
+	flagMaxTime  = flag.Duration("max-time", 0, "exit successfully after this much time")
+	flagMaxRuns  = flag.Int("max-runs", 0, "exit successfully after this many runs")
 	flagP        = flag.Int("p", runtime.NumCPU(), "run `N` processes in parallel")
 	flagLimit    = flag.Int("limit", 100, "maximum number of failures until exiting")
 	flagTimeout  = flag.Duration("timeout", 10*time.Minute, "timeout each process after `duration`")
@@ -133,6 +135,10 @@ func main() {
 				runs, fails, 100.0*(float64(runs)/float64(total)), totalDuration/time.Duration(total), max, min)
 		}
 	}
+	terminate := make(<-chan time.Time)
+	if *flagMaxTime > 0 {
+		terminate = time.After(*flagMaxTime)
+	}
 	for {
 		select {
 		case res := <-results:
@@ -148,6 +154,14 @@ func main() {
 				displayProgress()
 			}
 			if len(res.out) == 0 {
+				if *flagMaxRuns > 0 && runs >= *flagMaxRuns {
+					displayProgress()
+					fmt.Printf("max runs hit, exiting\n")
+					if fails > 0 {
+						os.Exit(1)
+					}
+					os.Exit(0)
+				}
 				continue
 			}
 			fails++
@@ -173,6 +187,21 @@ func main() {
 				fmt.Printf("failure limit hit, exiting\n")
 				os.Exit(1)
 			}
+			if *flagMaxRuns > 0 && runs >= *flagMaxRuns {
+				displayProgress()
+				fmt.Printf("max runs hit, exiting\n")
+				if fails > 0 {
+					os.Exit(1)
+				}
+				os.Exit(0)
+			}
+		case <-terminate:
+			displayProgress()
+			fmt.Printf("max time hit, exiting\n")
+			if fails > 0 {
+				os.Exit(1)
+			}
+			os.Exit(0)
 		case <-ticker:
 			displayProgress()
 		}
