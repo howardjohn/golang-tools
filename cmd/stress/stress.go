@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build !plan9
 // +build !plan9
 
 // The stress utility is intended for catching sporadic failures.
@@ -23,6 +24,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"runtime"
+	"sync"
 	"syscall"
 	"time"
 )
@@ -85,6 +87,8 @@ func main() {
 		}
 	}
 	results := make(chan result)
+	max, min := time.Duration(0), time.Duration(1<<63-1)
+	maxMu := sync.RWMutex{}
 	for i := 0; i < *flagP; i++ {
 		go func() {
 			for {
@@ -93,10 +97,21 @@ func main() {
 				done := make(chan bool)
 				if *flagTimeout > 0 {
 					go func() {
-						select {
-						case <-done:
-							return
-						case <-time.After(*flagTimeout):
+						for {
+							maxMu.RLock()
+							m := max * 10
+							maxMu.RUnlock()
+							if m == 0 {
+								m = *flagTimeout * 2
+							}
+							select {
+							case <-done:
+								return
+							case <-time.After(*flagTimeout):
+								break
+							case <-time.After(m):
+								fmt.Printf("process still running after %v\n", time.Since(t0))
+							}
 						}
 						if !*flagKill {
 							fmt.Printf("process %v timed out\n", cmd.Process.Pid)
@@ -124,9 +139,10 @@ func main() {
 	}
 	runs, fails := 0, 0
 	totalDuration := time.Duration(0)
-	max, min := time.Duration(0), time.Duration(1<<63-1)
 	ticker := time.NewTicker(2 * time.Second).C
 	displayProgress := func() {
+		maxMu.RLock()
+		defer maxMu.RUnlock()
 		total := runs + fails
 		if total == 0 {
 			fmt.Printf("no runs so far\n")
@@ -144,9 +160,11 @@ func main() {
 		case res := <-results:
 			runs++
 			totalDuration += res.duration
+			maxMu.Lock()
 			if res.duration > max {
 				max = res.duration
 			}
+			maxMu.Unlock()
 			if res.duration < min {
 				min = res.duration
 			}
