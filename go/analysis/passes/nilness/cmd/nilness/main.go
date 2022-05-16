@@ -1,10 +1,10 @@
-// The nilness command applies the golang.org/x/tools/go/analysis/passes/nilness
+// The nilness command applies the github.com/howardjohn/golang-tools/go/analysis/passes/nilness
 // analysis to the specified packages of Go source code.
 package main
 
 import (
-	"golang.org/x/tools/go/analysis/passes/nilness"
-	"golang.org/x/tools/go/analysis/singlechecker"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/nilness"
+	"github.com/howardjohn/golang-tools/go/analysis/singlechecker"
 )
 
 func main() { singlechecker.Main(nilness.Analyzer) }

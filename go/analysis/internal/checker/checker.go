@@ -29,11 +29,11 @@ import (
 	"sync"
 	"time"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/internal/analysisflags"
-	"golang.org/x/tools/go/packages"
-	"golang.org/x/tools/internal/analysisinternal"
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/go/analysis"
+	"github.com/howardjohn/golang-tools/go/analysis/internal/analysisflags"
+	"github.com/howardjohn/golang-tools/go/packages"
+	"github.com/howardjohn/golang-tools/internal/analysisinternal"
+	"github.com/howardjohn/golang-tools/internal/span"
 )
 
 var (

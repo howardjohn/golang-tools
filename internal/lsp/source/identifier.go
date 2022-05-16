@@ -13,8 +13,8 @@ import (
 	"sort"
 	"strconv"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
 	errors "golang.org/x/xerrors"
 )
 

@@ -14,12 +14,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/gocommand"
-	"golang.org/x/tools/internal/imports"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/span"
-	"golang.org/x/tools/internal/xcontext"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/gocommand"
+	"github.com/howardjohn/golang-tools/internal/imports"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/xcontext"
 	errors "golang.org/x/xerrors"
 )
 

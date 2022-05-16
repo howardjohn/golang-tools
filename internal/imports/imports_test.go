@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func TestMain(m *testing.M) {

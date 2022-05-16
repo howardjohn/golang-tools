@@ -11,14 +11,14 @@ import (
 	"net/http"
 	"text/template"
 
-	"golang.org/x/tools/godoc"
-	"golang.org/x/tools/godoc/redirect"
-	"golang.org/x/tools/godoc/vfs"
+	"github.com/howardjohn/golang-tools/godoc"
+	"github.com/howardjohn/golang-tools/godoc/redirect"
+	"github.com/howardjohn/golang-tools/godoc/vfs"
 )
 
 // This package registers "/compile" and "/share" handlers
 // that redirect to the golang.org playground.
-import _ "golang.org/x/tools/playground"
+import _ "github.com/howardjohn/golang-tools/playground"
 
 var (
 	pres *godoc.Presentation

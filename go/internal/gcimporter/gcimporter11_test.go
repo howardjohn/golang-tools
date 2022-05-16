@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 var importedObjectTests = []struct {

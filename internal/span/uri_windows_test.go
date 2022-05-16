@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build windows
 // +build windows
 
 package span_test
@@ -9,7 +10,7 @@ package span_test
 import (
 	"testing"
 
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/span"
 )
 
 // TestURI tests the conversion between URIs and filenames. The test cases

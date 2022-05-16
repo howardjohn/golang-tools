@@ -3,9 +3,9 @@ package mod
 import (
 	"context"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
 )
 
 func Format(ctx context.Context, snapshot source.Snapshot, fh source.FileHandle) ([]protocol.TextEdit, error) {

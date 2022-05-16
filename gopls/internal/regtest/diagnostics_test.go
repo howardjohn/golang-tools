@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/tools/internal/lsp"
-	"golang.org/x/tools/internal/lsp/fake"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/tests"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/lsp"
+	"github.com/howardjohn/golang-tools/internal/lsp/fake"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/tests"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 // Use mod.com for all go.mod files due to golang/go#35230.

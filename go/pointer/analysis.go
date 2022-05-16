@@ -17,9 +17,9 @@ import (
 	"runtime/debug"
 	"sort"
 
-	"golang.org/x/tools/go/callgraph"
-	"golang.org/x/tools/go/ssa"
-	"golang.org/x/tools/go/types/typeutil"
+	"github.com/howardjohn/golang-tools/go/callgraph"
+	"github.com/howardjohn/golang-tools/go/ssa"
+	"github.com/howardjohn/golang-tools/go/types/typeutil"
 )
 
 const (

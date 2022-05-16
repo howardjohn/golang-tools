@@ -15,10 +15,10 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/lsp/fuzzy"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/lsp/fuzzy"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/span"
 )
 
 // maxSymbols defines the maximum number of symbol results that should ever be

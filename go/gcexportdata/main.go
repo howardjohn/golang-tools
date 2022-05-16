@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build ignore
 // +build ignore
 
 // The gcexportdata command is a diagnostic tool that displays the
@@ -16,8 +17,8 @@ import (
 	"log"
 	"os"
 
-	"golang.org/x/tools/go/gcexportdata"
-	"golang.org/x/tools/go/types/typeutil"
+	"github.com/howardjohn/golang-tools/go/gcexportdata"
+	"github.com/howardjohn/golang-tools/go/types/typeutil"
 )
 
 var packageFlag = flag.String("package", "", "alternative package to print")

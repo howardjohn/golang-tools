@@ -11,7 +11,7 @@ import (
 	"runtime"
 	"strings"
 
-	"golang.org/x/tools/godoc/golangorgenv"
+	"github.com/howardjohn/golang-tools/godoc/golangorgenv"
 )
 
 // Page describes the contents of the top-level godoc webpage.

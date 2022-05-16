@@ -10,9 +10,9 @@ import (
 	"sort"
 	"testing"
 
-	"golang.org/x/tools/go/packages"
-	"golang.org/x/tools/go/packages/packagestest"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/go/packages"
+	"github.com/howardjohn/golang-tools/go/packages/packagestest"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 const (

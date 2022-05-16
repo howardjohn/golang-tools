@@ -4,6 +4,7 @@
 
 // No testdata on Android.
 
+//go:build !android
 // +build !android
 
 package eg_test
@@ -23,9 +24,9 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/go/loader"
-	"golang.org/x/tools/internal/testenv"
-	"golang.org/x/tools/refactor/eg"
+	"github.com/howardjohn/golang-tools/go/loader"
+	"github.com/howardjohn/golang-tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/refactor/eg"
 )
 
 // TODO(adonovan): more tests:

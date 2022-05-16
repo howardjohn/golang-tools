@@ -12,10 +12,10 @@ import (
 	"os"
 	"strings"
 
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/span"
-	"golang.org/x/tools/internal/tool"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/tool"
 	errors "golang.org/x/xerrors"
 )
 

@@ -1,4 +1,4 @@
-module golang.org/x/tools
+module github.com/howardjohn/golang-tools
 
 go 1.12
 

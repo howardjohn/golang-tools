@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build go1.12
 // +build go1.12
 
 package unitchecker_test
@@ -19,10 +20,10 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/go/analysis/passes/findcall"
-	"golang.org/x/tools/go/analysis/passes/printf"
-	"golang.org/x/tools/go/analysis/unitchecker"
-	"golang.org/x/tools/go/packages/packagestest"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/findcall"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/printf"
+	"github.com/howardjohn/golang-tools/go/analysis/unitchecker"
+	"github.com/howardjohn/golang-tools/go/packages/packagestest"
 )
 
 func TestMain(m *testing.M) {

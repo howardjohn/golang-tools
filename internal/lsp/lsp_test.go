@@ -14,14 +14,14 @@ import (
 	"sort"
 	"testing"
 
-	"golang.org/x/tools/internal/lsp/cache"
-	"golang.org/x/tools/internal/lsp/diff"
-	"golang.org/x/tools/internal/lsp/diff/myers"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/lsp/tests"
-	"golang.org/x/tools/internal/span"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/lsp/cache"
+	"github.com/howardjohn/golang-tools/internal/lsp/diff"
+	"github.com/howardjohn/golang-tools/internal/lsp/diff/myers"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/lsp/tests"
+	"github.com/howardjohn/golang-tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func TestMain(m *testing.M) {

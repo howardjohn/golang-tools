@@ -3,8 +3,8 @@ package regtest
 import (
 	"testing"
 
-	"golang.org/x/tools/internal/lsp"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/lsp"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 const basicProxy = `

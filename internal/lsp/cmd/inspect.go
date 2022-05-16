@@ -12,8 +12,8 @@ import (
 	"log"
 	"os"
 
-	"golang.org/x/tools/internal/lsp/lsprpc"
-	"golang.org/x/tools/internal/tool"
+	"github.com/howardjohn/golang-tools/internal/lsp/lsprpc"
+	"github.com/howardjohn/golang-tools/internal/tool"
 )
 
 type inspect struct {

@@ -1,5 +1,5 @@
 package c
 
 import (
-	_ "golang.org/x/tools/internal/lsp/circular/triple/a"
+	_ "github.com/howardjohn/golang-tools/internal/lsp/circular/triple/a"
 )

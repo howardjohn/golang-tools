@@ -4,6 +4,7 @@
 
 // Incomplete source tree on Android.
 
+//go:build !android
 // +build !android
 
 package ssa_test
@@ -21,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/tools/go/buildutil"
-	"golang.org/x/tools/go/loader"
-	"golang.org/x/tools/go/ssa"
-	"golang.org/x/tools/go/ssa/ssautil"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/go/buildutil"
+	"github.com/howardjohn/golang-tools/go/loader"
+	"github.com/howardjohn/golang-tools/go/ssa"
+	"github.com/howardjohn/golang-tools/go/ssa/ssautil"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func bytesAllocated() uint64 {

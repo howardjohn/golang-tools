@@ -14,12 +14,12 @@ import (
 	"sort"
 	"strings"
 
-	"golang.org/x/tools/go/packages"
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/lsp/debug/tag"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/packagesinternal"
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/go/packages"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/lsp/debug/tag"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/packagesinternal"
+	"github.com/howardjohn/golang-tools/internal/span"
 	errors "golang.org/x/xerrors"
 )
 

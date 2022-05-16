@@ -1,3 +1,4 @@
+//go:build go1.12
 // +build go1.12
 
 package multichecker_test
@@ -9,10 +10,10 @@ import (
 	"runtime"
 	"testing"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/multichecker"
-	"golang.org/x/tools/go/analysis/passes/findcall"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/go/analysis"
+	"github.com/howardjohn/golang-tools/go/analysis/multichecker"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/findcall"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func main() {

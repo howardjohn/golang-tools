@@ -4,6 +4,7 @@
 
 // No testdata on Android.
 
+//go:build !android
 // +build !android
 
 package loader_test
@@ -22,9 +23,9 @@ import (
 	"sync"
 	"testing"
 
-	"golang.org/x/tools/go/buildutil"
-	"golang.org/x/tools/go/loader"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/go/buildutil"
+	"github.com/howardjohn/golang-tools/go/loader"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func TestMain(m *testing.M) {

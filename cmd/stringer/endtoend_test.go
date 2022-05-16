@@ -4,6 +4,7 @@
 
 // go command is not available on android
 
+//go:build !android
 // +build !android
 
 package main
@@ -20,7 +21,7 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 // This file contains a test that compiles and runs each program in testdata

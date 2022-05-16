@@ -4,6 +4,7 @@
 
 // Incomplete source tree on Android.
 
+//go:build !android
 // +build !android
 
 package buildutil_test
@@ -15,8 +16,8 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/go/buildutil"
-	"golang.org/x/tools/go/packages/packagestest"
+	"github.com/howardjohn/golang-tools/go/buildutil"
+	"github.com/howardjohn/golang-tools/go/packages/packagestest"
 )
 
 func TestAllPackages(t *testing.T) {
@@ -25,7 +26,7 @@ func TestAllPackages(t *testing.T) {
 	}
 
 	exported := packagestest.Export(t, packagestest.GOPATH, []packagestest.Module{
-		{Name: "golang.org/x/tools/go/buildutil", Files: packagestest.MustCopyFileTree(".")}})
+		{Name: "github.com/howardjohn/golang-tools/go/buildutil", Files: packagestest.MustCopyFileTree(".")}})
 	defer exported.Cleanup()
 
 	var gopath string
@@ -53,7 +54,7 @@ func TestAllPackages(t *testing.T) {
 		t.Errorf("Found only %d packages, want at least %d", len(all), wantAtLeast)
 	}
 
-	for _, want := range []string{"fmt", "crypto/sha256", "golang.org/x/tools/go/buildutil"} {
+	for _, want := range []string{"fmt", "crypto/sha256", "github.com/howardjohn/golang-tools/go/buildutil"} {
 		if !set[want] {
 			t.Errorf("Package %q not found; got %s", want, all)
 		}

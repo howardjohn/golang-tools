@@ -10,7 +10,7 @@ import (
 	"path"
 	"testing"
 
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/span"
 )
 
 var testdata = []struct {

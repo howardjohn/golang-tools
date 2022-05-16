@@ -23,15 +23,15 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/tools/go/expect"
-	"golang.org/x/tools/go/packages"
-	"golang.org/x/tools/go/packages/packagestest"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/lsp/source/completion"
-	"golang.org/x/tools/internal/span"
-	"golang.org/x/tools/internal/testenv"
-	"golang.org/x/tools/txtar"
+	"github.com/howardjohn/golang-tools/go/expect"
+	"github.com/howardjohn/golang-tools/go/packages"
+	"github.com/howardjohn/golang-tools/go/packages/packagestest"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/lsp/source/completion"
+	"github.com/howardjohn/golang-tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/txtar"
 )
 
 const (
@@ -39,7 +39,7 @@ const (
 	goldenFileSuffix  = ".golden"
 	inFileSuffix      = ".in"
 	summaryFile       = "summary.txt"
-	testModule        = "golang.org/x/tools/internal/lsp"
+	testModule        = "github.com/howardjohn/golang-tools/internal/lsp"
 )
 
 var UpdateGolden = flag.Bool("golden", false, "Update golden files")

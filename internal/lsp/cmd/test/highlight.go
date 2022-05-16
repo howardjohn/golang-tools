@@ -5,7 +5,7 @@ import (
 
 	"fmt"
 
-	"golang.org/x/tools/internal/span"
+	"github.com/howardjohn/golang-tools/internal/span"
 )
 
 func (r *runner) Highlight(t *testing.T, spn span.Span, spans []span.Span) {

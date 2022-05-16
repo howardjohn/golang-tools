@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"golang.org/x/tools/internal/gocommand"
-	"golang.org/x/tools/internal/testenv"
-	"golang.org/x/tools/txtar"
+	"github.com/howardjohn/golang-tools/internal/gocommand"
+	"github.com/howardjohn/golang-tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/txtar"
 	errors "golang.org/x/xerrors"
 )
 

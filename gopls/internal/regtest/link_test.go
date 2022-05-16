@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func TestHoverAndDocumentLink(t *testing.T) {

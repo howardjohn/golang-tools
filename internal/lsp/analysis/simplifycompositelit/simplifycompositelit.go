@@ -15,9 +15,9 @@ import (
 	"go/token"
 	"reflect"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/inspector"
+	"github.com/howardjohn/golang-tools/go/analysis"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/inspect"
+	"github.com/howardjohn/golang-tools/go/ast/inspector"
 )
 
 const Doc = `check for composite literal simplifications

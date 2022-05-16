@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build !js && !nacl && !plan9 && !solaris && !windows
 // +build !js,!nacl,!plan9,!solaris,!windows
 
 /*
@@ -18,7 +19,7 @@ splitdwarf will place it where the OSX tools expect it, in
 creating directories as necessary.
 
 */
-package main // import "golang.org/x/tools/cmd/splitdwarf"
+package main // import "github.com/howardjohn/golang-tools/cmd/splitdwarf"
 
 import (
 	"crypto/sha256"
@@ -29,7 +30,7 @@ import (
 	"strings"
 	"syscall"
 
-	"golang.org/x/tools/cmd/splitdwarf/internal/macho"
+	"github.com/howardjohn/golang-tools/cmd/splitdwarf/internal/macho"
 )
 
 const (

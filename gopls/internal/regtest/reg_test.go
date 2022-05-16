@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/tools/internal/lsp/cmd"
-	"golang.org/x/tools/internal/testenv"
-	"golang.org/x/tools/internal/tool"
+	"github.com/howardjohn/golang-tools/internal/lsp/cmd"
+	"github.com/howardjohn/golang-tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/tool"
 )
 
 var (

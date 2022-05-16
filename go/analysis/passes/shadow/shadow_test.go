@@ -3,8 +3,8 @@ package shadow_test
 import (
 	"testing"
 
-	"golang.org/x/tools/go/analysis/analysistest"
-	"golang.org/x/tools/go/analysis/passes/shadow"
+	"github.com/howardjohn/golang-tools/go/analysis/analysistest"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/shadow"
 )
 
 func Test(t *testing.T) {

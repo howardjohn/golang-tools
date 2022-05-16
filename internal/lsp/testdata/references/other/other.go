@@ -1,7 +1,7 @@
 package other
 
 import (
-	references "golang.org/x/tools/internal/lsp/references"
+	references "github.com/howardjohn/golang-tools/internal/lsp/references"
 )
 
 func GetXes() []references.X {

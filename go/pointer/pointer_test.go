@@ -4,6 +4,7 @@
 
 // No testdata on Android.
 
+//go:build !android
 // +build !android
 
 package pointer_test
@@ -25,12 +26,12 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/go/callgraph"
-	"golang.org/x/tools/go/loader"
-	"golang.org/x/tools/go/pointer"
-	"golang.org/x/tools/go/ssa"
-	"golang.org/x/tools/go/ssa/ssautil"
-	"golang.org/x/tools/go/types/typeutil"
+	"github.com/howardjohn/golang-tools/go/callgraph"
+	"github.com/howardjohn/golang-tools/go/loader"
+	"github.com/howardjohn/golang-tools/go/pointer"
+	"github.com/howardjohn/golang-tools/go/ssa"
+	"github.com/howardjohn/golang-tools/go/ssa/ssautil"
+	"github.com/howardjohn/golang-tools/go/types/typeutil"
 )
 
 var inputs = []string{

@@ -7,12 +7,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/analysistest"
-	"golang.org/x/tools/go/analysis/internal/checker"
-	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/inspector"
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/go/analysis"
+	"github.com/howardjohn/golang-tools/go/analysis/analysistest"
+	"github.com/howardjohn/golang-tools/go/analysis/internal/checker"
+	"github.com/howardjohn/golang-tools/go/analysis/passes/inspect"
+	"github.com/howardjohn/golang-tools/go/ast/inspector"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 var from, to string

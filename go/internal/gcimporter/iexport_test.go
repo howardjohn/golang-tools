@@ -4,6 +4,7 @@
 
 // This is a copy of bexport_test.go for iexport.go.
 
+//go:build go1.11
 // +build go1.11
 
 package gcimporter_test
@@ -23,9 +24,9 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/go/buildutil"
-	"golang.org/x/tools/go/internal/gcimporter"
-	"golang.org/x/tools/go/loader"
+	"github.com/howardjohn/golang-tools/go/buildutil"
+	"github.com/howardjohn/golang-tools/go/internal/gcimporter"
+	"github.com/howardjohn/golang-tools/go/loader"
 )
 
 func TestIExportData_stdlib(t *testing.T) {

@@ -4,6 +4,7 @@
 
 // TODO(rfindley): figure out why go generate fails on android builders.
 
+//go:build !android
 // +build !android
 
 package regtest
@@ -11,7 +12,7 @@ package regtest
 import (
 	"testing"
 
-	"golang.org/x/tools/internal/lsp"
+	"github.com/howardjohn/golang-tools/internal/lsp"
 )
 
 func TestGenerateProgress(t *testing.T) {

@@ -4,8 +4,8 @@
 
 // No testdata on Android.
 
-// +build !android
-// +build go1.11
+//go:build !android && go1.11
+// +build !android,go1.11
 
 package main
 
@@ -18,7 +18,7 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/tools/internal/testenv"
+	"github.com/howardjohn/golang-tools/internal/testenv"
 )
 
 func init() {

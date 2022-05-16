@@ -2,7 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build go1.8,!go1.9 // TODO(adonovan) determine which versions we need to test here
+//go:build ((go1.8 && !go1.9) || ignore || ignore || determine || which || versions || we || need || to || test || here) && !windows
+// +build go1.8,!go1.9 ignore ignore determine which versions we need to test here
 // +build !windows
 
 package loader_test
@@ -16,7 +17,7 @@ import (
 	"sort"
 	"strings"
 
-	"golang.org/x/tools/go/loader"
+	"github.com/howardjohn/golang-tools/go/loader"
 )
 
 func printProgram(prog *loader.Program) {

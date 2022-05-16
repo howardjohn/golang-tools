@@ -38,14 +38,14 @@ import (
 	"runtime"
 	"strings"
 
-	"golang.org/x/tools/godoc"
-	"golang.org/x/tools/godoc/analysis"
-	"golang.org/x/tools/godoc/static"
-	"golang.org/x/tools/godoc/vfs"
-	"golang.org/x/tools/godoc/vfs/gatefs"
-	"golang.org/x/tools/godoc/vfs/mapfs"
-	"golang.org/x/tools/godoc/vfs/zipfs"
-	"golang.org/x/tools/internal/gocommand"
+	"github.com/howardjohn/golang-tools/godoc"
+	"github.com/howardjohn/golang-tools/godoc/analysis"
+	"github.com/howardjohn/golang-tools/godoc/static"
+	"github.com/howardjohn/golang-tools/godoc/vfs"
+	"github.com/howardjohn/golang-tools/godoc/vfs/gatefs"
+	"github.com/howardjohn/golang-tools/godoc/vfs/mapfs"
+	"github.com/howardjohn/golang-tools/godoc/vfs/zipfs"
+	"github.com/howardjohn/golang-tools/internal/gocommand"
 	"golang.org/x/xerrors"
 )
 

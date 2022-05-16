@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"context"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/event/core"
-	"golang.org/x/tools/internal/event/export"
-	"golang.org/x/tools/internal/event/label"
-	"golang.org/x/tools/internal/xcontext"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/event/core"
+	"github.com/howardjohn/golang-tools/internal/event/export"
+	"github.com/howardjohn/golang-tools/internal/event/label"
+	"github.com/howardjohn/golang-tools/internal/xcontext"
 )
 
 type contextKey int

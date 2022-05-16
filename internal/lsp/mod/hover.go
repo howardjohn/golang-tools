@@ -7,11 +7,11 @@ import (
 	"go/token"
 	"strings"
 
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/lsp/source"
+	"github.com/howardjohn/golang-tools/internal/span"
 	"golang.org/x/mod/modfile"
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/lsp/protocol"
-	"golang.org/x/tools/internal/lsp/source"
-	"golang.org/x/tools/internal/span"
 	errors "golang.org/x/xerrors"
 )
 
@@ -145,9 +145,9 @@ func formatExplanation(text string, req *modfile.Require, options *source.Option
 	b.WriteString("This module is necessary because " + reference + " is imported in")
 
 	// If the explanation is 3 lines, then it is of the form:
-	// # golang.org/x/tools
+	// # github.com/howardjohn/golang-tools
 	// modtest
-	// golang.org/x/tools/go/packages
+	// github.com/howardjohn/golang-tools/go/packages
 	if length == 3 {
 		msg := fmt.Sprintf(" `%s`.", splt[1])
 		b.WriteString(msg)

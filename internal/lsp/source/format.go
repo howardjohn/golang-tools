@@ -15,10 +15,10 @@ import (
 	"go/token"
 	"strings"
 
-	"golang.org/x/tools/internal/event"
-	"golang.org/x/tools/internal/imports"
-	"golang.org/x/tools/internal/lsp/diff"
-	"golang.org/x/tools/internal/lsp/protocol"
+	"github.com/howardjohn/golang-tools/internal/event"
+	"github.com/howardjohn/golang-tools/internal/imports"
+	"github.com/howardjohn/golang-tools/internal/lsp/diff"
+	"github.com/howardjohn/golang-tools/internal/lsp/protocol"
 )
 
 // Format formats a file with a given range.

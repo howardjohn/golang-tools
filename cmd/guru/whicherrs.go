@@ -11,12 +11,12 @@ import (
 	"go/types"
 	"sort"
 
-	"golang.org/x/tools/cmd/guru/serial"
-	"golang.org/x/tools/go/ast/astutil"
-	"golang.org/x/tools/go/loader"
-	"golang.org/x/tools/go/pointer"
-	"golang.org/x/tools/go/ssa"
-	"golang.org/x/tools/go/ssa/ssautil"
+	"github.com/howardjohn/golang-tools/cmd/guru/serial"
+	"github.com/howardjohn/golang-tools/go/ast/astutil"
+	"github.com/howardjohn/golang-tools/go/loader"
+	"github.com/howardjohn/golang-tools/go/pointer"
+	"github.com/howardjohn/golang-tools/go/ssa"
+	"github.com/howardjohn/golang-tools/go/ssa/ssautil"
 )
 
 var builtinErrorType = types.Universe.Lookup("error").Type()

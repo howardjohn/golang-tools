@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build go1.7
-// +build gc
+//go:build go1.7 && gc
+// +build go1.7,gc
 
 package gcexportdata_test
 
@@ -17,7 +17,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"golang.org/x/tools/go/gcexportdata"
+	"github.com/howardjohn/golang-tools/go/gcexportdata"
 )
 
 // ExampleRead uses gcexportdata.Read to load type information for the
