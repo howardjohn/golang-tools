@@ -8,7 +8,9 @@
 // The stress utility is intended for catching sporadic failures.
 // It runs a given process in parallel in a loop and collects any failures.
 // Usage:
-// 	$ stress ./fmt.test -test.run=TestSometing -test.cpu=10
+//
+//	$ stress ./fmt.test -test.run=TestSometing -test.cpu=10
+//
 // You can also specify a number of parallel processes with -p flag;
 // instruct the utility to not kill hanged processes for gdb attach;
 // or specify the failure output you are looking for (if you want to
@@ -143,12 +145,12 @@ func main() {
 	displayProgress := func() {
 		maxMu.RLock()
 		defer maxMu.RUnlock()
-		total := runs + fails
-		if total == 0 {
+		if runs == 0 {
 			fmt.Printf("no runs so far\n")
 		} else {
+			passRate := 100.0 * (float64(runs-fails) / float64(runs))
 			fmt.Printf("%v runs so far, %v failures (%.2f%% pass rate). %v avg, %v max, %v min\n",
-				runs, fails, 100.0*(float64(runs)/float64(total)), totalDuration/time.Duration(total), max, min)
+				runs, fails, passRate, totalDuration/time.Duration(runs), max, min)
 		}
 	}
 	terminate := make(<-chan time.Time)
